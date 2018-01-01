@@ -1,5 +1,57 @@
 /* Imports */
 
 @import url('typography.css');
+@import url('header.css');
+@import url('footer.css');
+@import url('utilities.css');
 
 /* Page styles */
+
+body {
+    background: #fff url('../assets/group-5.jpg') no-repeat center;
+    height: 100%;
+    width: 100%;
+}
+
+/* Forms */
+
+.input.form-control  {
+    border: none;
+    border-radius: 100px;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    height: 36px;
+    padding: 10px;
+    width: 100%;
+}
+
+/* Search input */
+
+.search-container {
+    margin: 130px auto 142px;
+    max-width: 620px;
+}
+
+.search__input.form-control {
+    border-radius: 100px 0 0 100px;
+    width: 75%;
+}
+
+.search__button.input-group-addon {
+    background-color: #6d9f03;
+    border: none;
+    border-radius: 0 100px 100px 0;
+    height: 36px;
+    width: 25%;
+    font-family: Lato;
+    font-size: 14px;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Carousel */
+
+.carousel__item {
+    /* max-width: 532px; */
+}
