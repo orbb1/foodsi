@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./vendor/slick.css"/>
     <link rel="stylesheet" type="text/css" href="./vendor/slick-theme.css"/>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 </head>
 
 <body>
@@ -50,29 +50,44 @@
             </ul>
         </div>
     </footer>
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade modal--custom" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="registerModalLabel">Logowanie</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-header modal-header--custom">
+                    <h5 class="modal-title u-margin--auto" id="registerModalLabel">Logowanie</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="registration-form">
+                        <div class="form-group">
+                            <label class="input__label" for="email">Email (required)</label>
+                            <input class="input form-control" id="email" name="email" type="email" required/>
+                        </div>
+                        <div class="form-group">
+                            <label class="input__label" for="password">Password (required)</label>
+                            <input class="input form-control" id="password" name="password" type="password" required minlength="8"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="input__label" for="phone" >Phone</label>
+                            <input class="input form-control" id="phone" name="phone" type="number"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="input__label" for="picture">Picture</label>
+                            <input class="form-control" id="picture" name="picture" type="file"/>
+                        </div>
+                        <div class="form-group">
+                            <label class="input__label" for="referral_code" >Ref. code</label>
+                            <input class="input form-control" id="referral_code" name="referral_code" type="text"/>
+                        </div>
+                        <button class="button button-submit" type="submit">Register</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
     <!-- Bootstrap dependencies and js -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
     <!-- Slick js -->
     <script type="text/javascript" src="./vendor/slick.min.js"></script>
     <script type="text/javascript" src="./scripts/main.js"></script>

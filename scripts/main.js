@@ -1,4 +1,8 @@
 (function main($) {
+
+    var API_URL = 'https://foodsi-stage.applover.pl/api/v1/auth',
+        $form = $('.registration-form');
+
     var appendCarousel = function() {
         $('.carousel').slick({
             arrows: true,
@@ -11,10 +15,24 @@
           });
     };
 
-    var onRegister = function() {
-        
+    var onRegister = function(e) {
+        $.ajax({
+            url: API_URL,
+            type: 'POST',
+            data: new FormData(this),
+            success: function (res, status, xhr) {
+                console.log(res)
+            },
+            error: function (xhr, status, error) {
+                console.log(error, status)
+            },
+            processData: false,
+            contentType: false
+        });
+        e.preventDefault();
     }
 
+    $form.on('submit', onRegister);
     appendCarousel();
     
 })(jQuery);
