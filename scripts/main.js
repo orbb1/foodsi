@@ -11,7 +11,18 @@
             infinite: true,
             slidesToScroll: 3,
             slidesToShow: 1,
-            variableWidth: true
+            variableWidth: true,
+            responsive: [
+                {
+                  breakpoint: 480,
+                  settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                  }
+                }
+              ]
           });
     };
 

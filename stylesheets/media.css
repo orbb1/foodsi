@@ -1,0 +1,9 @@
+@media (max-width: 426px) {
+    .carousel__item {
+        width: 250px;
+    }
+
+    .search-container {
+        margin: 30px auto 42px;
+    }
+}
