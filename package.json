@@ -1,0 +1,25 @@
+{
+  "name": "carbon",
+  "version": "1.0.0",
+  "description": "Carbon intensity",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orbb1/foodsi.git"
+  },
+  "author": "orbb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/orbb1/foodsi/issues"
+  },
+  "homepage": "https://github.com/orbb1/foodsi#readme",
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "local-web-server": "^2.4.0"
+  }
+}
