@@ -5,92 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Foodsi</title>
-    <link rel="stylesheet" type="text/css" href="./stylesheets/styles.css"/>
-    <!-- Slick CSS -->
-    <link rel="stylesheet" type="text/css" href="./vendor/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="./vendor/slick-theme.css"/>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <title>Carbon intensity</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
-    <header class="mainheader">
-        <nav class="container mainheader__nav text-right">
-            <ul class="mainheader__nav-list">
-                <li><a class="mainheader__nav-link" href="#" data-toggle="modal" data-target="#registerModal">Załóż konto</a></li>
-                <li><a class="mainheader__nav-link" href="#">Załoguj</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="main">
-        <div class="container">
-            <div class="search-container input-group u-margin--auto">
-                <input type="text" class="input search__input form-control" id="searchInput" placeholder="Wpisz szukaną frazę np. informatyka, Warszawa, java" />
-                <label class="sr-only" for="searchInput">Szukaj</label>
-                <button class="search__button input-group-addon">Szukaj</button>
-            </div>
-            <div class="row">
-                <div class="col-lg-10 col-md-10 u-margin--auto">
-                    <div class="carousel">
-                        <img class="carousel__item" src="./assets/okno.png" />
-                        <img class="carousel__item" src="./assets/okno.png" />
-                        <img class="carousel__item" src="./assets/okno.png" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="mainfooter">
-        <div class="container">
-            <span class="footer__info">Copyright Harex 2017</span>
-            <ul class="footer__nav-list">
-                <li><a class="footer__nav-link" href="#">Regulamin</a></li>
-                <li><a class="footer__nav-link" href="#">Polityka prywatności</a></li>
-            </ul>
-        </div>
-    </footer>
-    <div class="modal fade modal--custom" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header modal-header--custom">
-                    <h5 class="modal-title u-margin--auto" id="registerModalLabel">Logowanie</h5>
-                </div>
-                <div class="modal-body">
-                    <form class="registration-form">
-                        <div class="form-group">
-                            <label class="input__label" for="email">Email (required)</label>
-                            <input class="input form-control" id="email" name="email" type="email" required/>
-                        </div>
-                        <div class="form-group">
-                            <label class="input__label" for="password">Password (required)</label>
-                            <input class="input form-control" id="password" name="password" type="password" required minlength="8"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="input__label" for="phone" >Phone</label>
-                            <input class="input form-control" id="phone" name="phone" type="number"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="input__label" for="picture">Picture</label>
-                            <input class="form-control" id="picture" name="picture" type="file"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="input__label" for="referral_code" >Ref. code</label>
-                            <input class="input form-control" id="referral_code" name="referral_code" type="text"/>
-                        </div>
-                        <button class="button button-submit" type="submit">Register</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Bootstrap dependencies and js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
-    <!-- Slick js -->
-    <script type="text/javascript" src="./vendor/slick.min.js"></script>
-    <script type="text/javascript" src="./scripts/main.js"></script>
+    <h1>Carbon intensity API</h1>
+    <script src="vendor/jquery-3.3.1.min.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
