@@ -17,7 +17,8 @@ gulp.task('clean', function() {
 gulp.task('jshint', function() {
     return gulp.src([
         SOURCE_DIR + '/**/*.js',
-        '!**/*.min.js'
+        '!**/*.min.js',
+        '!app/jasmine/lib/**'
     ])
     .pipe(gulpJShint())
     .pipe(gulpJShint.reporter('jshint-stylish'));
