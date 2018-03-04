@@ -3,7 +3,9 @@ var browserSync = require('browser-sync').create(),
     gulpClean = require('gulp-clean'),
     gulpJShint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    rename = require('gulp-rename'),
+    sourcemaps = require('gulp-sourcemaps');
 
 var DIST_DIR = './public',
     SOURCE_DIR = './app';
@@ -21,10 +23,13 @@ gulp.task('jshint', function() {
     .pipe(gulpJShint.reporter('jshint-stylish'));
 });
 
-gulp.task('js-uglify', ['clean'], function() {
+gulp.task('js-uglify', function() {
     gulp.src(SOURCE_DIR + '/scripts/*.js')
+    .pipe(sourcemaps.init())
     .pipe(uglify())
-    .pipe(gulp.dest(DIST_DIR));
+    .pipe(sourcemaps.write())
+    .pipe(rename('app.min.js'))
+    .pipe(gulp.dest(SOURCE_DIR));
 });
 
 gulp.task('js-watch', ['jshint'], function(done) {
@@ -35,21 +40,20 @@ gulp.task('js-watch', ['jshint'], function(done) {
 gulp.task('sass', function() {
     return gulp.src(SOURCE_DIR + '/styles.scss')
     .pipe(sass())
-    .pipe(gulp.dest(DIST_DIR))
     .pipe(gulp.dest(SOURCE_DIR))
     .pipe(browserSync.stream());
 });
 
-gulp.task('serve', function() {
+gulp.task('serve', ['js-uglify', 'sass'], function() {
     browserSync.init({
         open: true,
         port: 8080,
         server: {
-            baseDir: [DIST_DIR, SOURCE_DIR]
+            baseDir: [SOURCE_DIR]
         }
     });
 
-    gulp.watch(SOURCE_DIR + '/**/*.js', ['js-watch']);
+    gulp.watch(SOURCE_DIR + '/**/*.js', ['js-watch', 'js-uglify']);
     gulp.watch(SOURCE_DIR + '/**/*.scss', ['sass']);
     gulp.watch(SOURCE_DIR + '/*.html').on('change', browserSync.reload);
 });
