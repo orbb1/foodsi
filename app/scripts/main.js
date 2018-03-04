@@ -1,5 +1,7 @@
+'use strict';
+
 var APP = (function($, APP) {
-    var content = $('<h2></h2>').text('Body content!');
+    var content = $('<h2></h2>').text('Initialized!');
     
     APP.init = function() {
         APP.log();
