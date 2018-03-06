@@ -2,6 +2,8 @@
     "globals": {
         "$": false,
         "window": false,
-        "jQuery": false
+        "jQuery": false,
+        "document": false,
+        "use strict": false
     }
 }
