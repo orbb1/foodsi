@@ -2,7 +2,7 @@
 
 var Router = (function() {
     var instance;
-    var routes;
+    var routes = [];
 
     function createInstance() {
 
@@ -10,7 +10,7 @@ var Router = (function() {
             var routeTo = routes.find(function(route) {
                 return route.url === urlhash;
             });
-
+    
             if (routeTo != undefined) {
                 routeTo.init();
             } else {
@@ -21,10 +21,22 @@ var Router = (function() {
                     defaultRoute.init(); 
                 };
             }
-        }
+        };
+    
+        function when(cfg) {
+            if (typeof cfg === 'object' 
+                && typeof cfg.url === 'string'
+                && typeof cfg.init === 'function') {
+                routes.push(cfg);
+            };
+
+            return this;
+        };
 
         return {
-            navigate: navigate
+            when: when,
+            navigate: navigate,
+            routes: routes
         }
     };
 
