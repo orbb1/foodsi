@@ -5,7 +5,8 @@ var browserSync = require('browser-sync').create(),
     uglify = require('gulp-uglify'),
     sass = require('gulp-sass'),
     rename = require('gulp-rename'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    concat = require('gulp-concat');
 
 var DIST_DIR = './public',
     SOURCE_DIR = './app';
@@ -27,6 +28,7 @@ gulp.task('jshint', function() {
 gulp.task('js-uglify', function() {
     gulp.src(SOURCE_DIR + '/scripts/*.js')
     .pipe(sourcemaps.init())
+    .pipe(concat('allscripts.js'))
     .pipe(uglify())
     .pipe(sourcemaps.write())
     .pipe(rename('app.min.js'))

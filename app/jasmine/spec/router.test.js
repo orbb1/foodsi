@@ -1,6 +1,6 @@
 describe('in Router', function() {
-    var router = Router.getInstance();
-    var routes = router.routes;
+    var router,
+        routes;
 
     var home = {
         url: 'home',
@@ -19,9 +19,11 @@ describe('in Router', function() {
     var wrongRoute1 = {
         init: function() { }
     };
-    
-    routes.push(about);
-    routes.push(home);
+
+    beforeEach(function() {
+        router = Router.getInstance();
+        //routes = router.routes;
+    });
 
     describe('when Router initialize', function() {
         var routerInstance2 = Router.getInstance();
@@ -32,29 +34,44 @@ describe('in Router', function() {
     });
 
     describe('when "navigate" method called', function() {
+
         beforeEach(function() {
+            router.routes.push(about, home);
             spyOn(home, 'init');
         });
 
+        afterEach(function() {
+            router.routes = [];
+        });
+
         it('should call proper route init method', function() {
-            router.navigate('home', routes)
+            router.navigate('home',  router.routes);
             expect(home.init).toHaveBeenCalled();
         });
 
         it('should call default route init method', function() {
-            router.navigate('', routes)
+            router.navigate('',  router.routes);
             expect(home.init).toHaveBeenCalled();
-        })
+        });
     });
 
     describe('when "when" method called', function() {
+
+        beforeEach(function() {
+            router.routes = [];
+        });
+
+        afterEach(function() {
+            router.routes = [];
+        });
+
         it('should return router instanse for chainig', function() {
-            expect(router.when(contacts)).toEqual(router);
+            expect(router.when()).toEqual(router);
         });
         
         it('sould add route config to list of configs', function() {
             router.when(contacts);
-            expect(routes).toContain(contacts);
+            expect(router.routes).toContain(contacts);
         });
 
         it('sould not add wrong route config to list of configs', function() {
@@ -62,4 +79,18 @@ describe('in Router', function() {
             expect(routes).not.toContain(wrongRoute1);
         });
     });
-})
+    describe('when "otherwise" method called with url as parameter', function() {
+        beforeEach(function() {
+            router.routes.push(about, contacts);
+        });
+
+        afterEach(function() {
+            router.routes = [];
+        });
+
+        it('should set add to route config with this url property default to equal true', function() {
+            router.otherwise(about.url);
+            expect(about.default).toBe(true);
+        });
+    });
+});
