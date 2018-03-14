@@ -22,7 +22,9 @@ describe('in Router', function() {
 
     beforeEach(function() {
         router = Router.getInstance();
-        //routes = router.routes;
+    });
+    afterEach(function() {
+        router = null;
     });
 
     describe('when Router initialize', function() {
@@ -37,6 +39,7 @@ describe('in Router', function() {
 
         beforeEach(function() {
             router.routes.push(about, home);
+            spyOn(about, 'init');
             spyOn(home, 'init');
         });
 
@@ -45,13 +48,18 @@ describe('in Router', function() {
         });
 
         it('should call proper route init method', function() {
-            router.navigate('home',  router.routes);
-            expect(home.init).toHaveBeenCalled();
+            router.navigate('about',  router.routes);
+            expect(about.init).toHaveBeenCalled();
         });
 
         it('should call default route init method', function() {
             router.navigate('',  router.routes);
             expect(home.init).toHaveBeenCalled();
+        });
+
+        it('should not call the same route init method twice', function() {
+            router.navigate('home',  router.routes);
+            expect(home.init).not.toHaveBeenCalled();
         });
     });
 

@@ -10,12 +10,7 @@ var APP = (function($, APP) {
         console.log('init');
     };
 
-    APP.modules = [];
-
-    $(document).ready(function() {
-        APP.init();
-    });
+    APP.modules;
 
     return APP;
 })(jQuery, window.APP || {});
-

@@ -26,7 +26,12 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('js-uglify', function() {
-    gulp.src(SOURCE_DIR + '/scripts/*.js')
+    gulp.src([
+        SOURCE_DIR + '/scripts/router.js',
+        SOURCE_DIR + '/scripts/app.js',
+        SOURCE_DIR + '/pages/**/*.js',
+        SOURCE_DIR + '/scripts/router.config.js'
+    ])
     .pipe(sourcemaps.init())
     .pipe(concat('allscripts.js'))
     .pipe(uglify())

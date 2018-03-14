@@ -1,13 +1,13 @@
 'use strict';
 
-APP.modules = (function(modules) {
+APP.modules = (function(modules, $) {
     modules.home = (function() {
         var init = function() {
-            console.log('home init!');
+            $('main').load('/pages/home/tmpl-home.html');
         };
 
         return {init: init};
     })();
 
     return modules;
-})(APP.modules || {});
+})(APP.modules || {}, jQuery);

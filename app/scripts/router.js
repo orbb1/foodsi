@@ -3,23 +3,25 @@
 var Router = (function() {
     var instance;
     var routes = [];
+    var currentPage;
 
     function createInstance() {
- 
-        function navigate(urlhash, routes) {
-            var routeTo = routes.find(function(route) {
-                return route.url === urlhash;
-            });
+
+        window.addEventListener('hashchange', function(e) {
+            navigate(location.hash.substr(1), routes);
+        });
+
+        window.addEventListener('DOMContentLoaded', function() {
+            navigate('', routes);
+        });
+
+        function navigate(urlhash, definedRoutes) {
+            var nextPage = definedRoutes.find(function(route) { return route.url === urlhash; }) 
+                        || definedRoutes.find(function(route) { return route.default; });
     
-            if (routeTo != undefined) {
-                routeTo.init();
-            } else {
-                var defaultRoute = routes.find(function(route) {
-                    return route.default;
-                });
-                if (defaultRoute != undefined) { 
-                    defaultRoute.init(); 
-                }
+            if (nextPage != undefined && currentPage !== nextPage) {
+                nextPage.init();
+                currentPage = nextPage;
             }
         }
     
