@@ -14,7 +14,6 @@
         <h1>Carbon intensity page</h1>
         <nav>
             <ul>
-                <li><a href="#asd">asd</a></li>
                 <li><a href="#home">home</a></li>
             </ul>
         </nav>
@@ -23,8 +22,15 @@
         <section class="section__content">
         </section>
     </main>
-    <script src="vendor/jquery-3.3.1.min.js"></script>
-    <script src="app.min.js"></script>
+    <!-- build:js vendor.js -->
+    <script type="text/javascript" src="vendor/jquery-3.3.1.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js combined.js -->
+    <script type="text/javascript" src="scripts/router.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="pages/home/home.js"></script>
+    <script type="text/javascript" src="scripts/router.config.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>
