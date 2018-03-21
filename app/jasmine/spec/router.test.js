@@ -5,7 +5,6 @@ describe('in Router', function() {
     var home = {
         url: 'home',
         init: function() { },
-        default: true
     };
     var about = {
         url: 'about',
@@ -37,30 +36,46 @@ describe('in Router', function() {
 
     describe('when "navigate" method called', function() {
 
-        beforeEach(function() {
-            router.routes.push(about, home);
-            spyOn(about, 'init');
-            spyOn(home, 'init');
-        });
-
         afterEach(function() {
             router.routes = [];
         });
 
-        it('should call proper route init method', function() {
-            router.navigate('about',  router.routes);
-            expect(about.init).toHaveBeenCalled();
+        describe('and route is on routes list', function() {
+            beforeEach(function() {
+                router.when(about);
+                router.when(home);
+                spyOn(about, 'init');
+            });
+            it('should call proper route init method', function() {
+                router.navigate('about',  router.routes);
+                expect(about.init).toHaveBeenCalled();
+            });
+        })
+
+        describe('and route is not on routes list', function() {
+            beforeEach(function() {
+                router.when(home);
+                router.otherwise('home');
+                spyOn(home, 'init');
+            });
+            it('should call default route init method', function() {
+                router.navigate('',  router.routes);
+                expect(home.init).toHaveBeenCalled();
+            });
         });
 
-        it('should call default route init method', function() {
-            router.navigate('',  router.routes);
-            expect(home.init).toHaveBeenCalled();
+        describe('and route is same as active route', function() {
+            beforeEach(function() {
+                router.when(home);
+                spyOn(home, 'init');
+            });
+            it('should not call any route config init method', function() {
+                router.navigate('home',  router.routes);
+                expect(home.init).not.toHaveBeenCalled();
+            });
         });
 
-        it('should not call the same route init method twice', function() {
-            router.navigate('home',  router.routes);
-            expect(home.init).not.toHaveBeenCalled();
-        });
+        
     });
 
     describe('when "when" method called', function() {
@@ -84,7 +99,7 @@ describe('in Router', function() {
 
         it('sould not add wrong route config to list of configs', function() {
             router.when(wrongRoute1);
-            expect(routes).not.toContain(wrongRoute1);
+            expect(router.routes).not.toContain(wrongRoute1);
         });
     });
     describe('when "otherwise" method called with url as parameter', function() {
