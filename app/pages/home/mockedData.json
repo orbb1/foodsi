@@ -1,0 +1,13 @@
+{
+    "data": [
+        {
+            "from": "2018-03-21T19:00Z",
+            "to": "2018-03-21T19:30Z",
+            "intensity": {
+                "forecast": 349,
+                "actual": 337,
+                "index": "high"
+            }
+        }
+    ]
+}

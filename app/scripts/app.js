@@ -11,6 +11,7 @@ var APP = (function($, APP) {
     };
 
     APP.modules;
-
+    APP.services;
+    
     return APP;
 })(jQuery, window.APP || {});

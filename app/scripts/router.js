@@ -5,7 +5,7 @@ var Router = (function() {
     var routes = [];
     var currentPage;
 
-    function createInstance() {
+    function RouterClass() {
 
         window.addEventListener('hashchange', function(e) {
             navigate(location.hash.substr(1), routes);
@@ -57,7 +57,7 @@ var Router = (function() {
 
     function getInstance() {
         if (!instance) {
-            instance = createInstance();
+            instance = new RouterClass();
         }
         return instance;
     }
