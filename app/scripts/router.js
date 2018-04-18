@@ -2,12 +2,12 @@
 
 var Router = (function() {
     var instance;
-    var routes = [];
+    var routes = {};
     var currentPage;
 
     function RouterClass() {
 
-        window.addEventListener('hashchange', function(e) {
+        window.addEventListener('hashchange', function() {
             navigate(location.hash.substr(1), routes);
         });
 
@@ -16,32 +16,29 @@ var Router = (function() {
         });
 
         function navigate(urlhash, definedRoutes) {
-            var nextPage = definedRoutes.find(function(route) { return route.url === urlhash; }) 
-                        || definedRoutes.find(function(route) { return route.default; });
-    
+            var nextPage = definedRoutes[urlhash] || Object.keys(definedRoutes)
+                                                        .map(function(route){ return definedRoutes[route]})
+                                                        .filter(function(r) { return r.default})[0];
+
             if (nextPage != undefined && currentPage !== nextPage) {
                 nextPage.init();
                 currentPage = nextPage;
+            } else {
+                return
             }
         }
     
         function when(cfg) {
-            if (typeof cfg === 'object' 
-                && typeof cfg.url === 'string'
-                && typeof cfg.init === 'function') {
-                this.routes.push(cfg);
+            if (typeof cfg === 'object' && typeof cfg.url === 'string' && typeof cfg.init === 'function') {
+                this.routes[cfg.url] = cfg;
             }
 
             return this;
         }
 
         function otherwise(url) {
-            if (typeof url === 'string') {
-                this.routes.map(function(route) {
-                    if(route.url === url && !route.default) {
-                        route.default = true;
-                    }
-                });
+            if (typeof url === 'string' && !this.routes[url].default) {
+                this.routes[url].default = true;
             }
 
             return this;

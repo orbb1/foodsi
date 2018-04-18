@@ -4,5 +4,5 @@ function routerInit() {
     router
         .when({url: 'home', init: APP.modules.home.init})
         .otherwise('home');
-};
+}
 routerInit();

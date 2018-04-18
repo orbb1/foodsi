@@ -28,9 +28,8 @@ gulp.task('jshint', function() {
     .pipe(gulpJShint.reporter('jshint-stylish'));
 });
 
-gulp.task('js-watch', ['jshint'], function(done) {
+gulp.task('js-watch', ['jshint'], function() {
     browserSync.reload();
-    done();
 });
 
 gulp.task('sass', function() {

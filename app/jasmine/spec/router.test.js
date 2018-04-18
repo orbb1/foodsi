@@ -16,7 +16,8 @@ describe('in Router', function() {
     };
 
     var wrongRoute1 = {
-        init: function() { }
+        url: 'wrongUrl',
+        init: 'wrongInit'
     };
 
     beforeEach(function() {
@@ -37,41 +38,46 @@ describe('in Router', function() {
     describe('when "navigate" method called', function() {
 
         afterEach(function() {
-            router.routes = [];
+            router.routes = {};
         });
 
         describe('and route is on routes list', function() {
             beforeEach(function() {
                 router.when(about);
                 router.when(home);
-                spyOn(about, 'init');
+                spyOn(router.routes.about, 'init');
             });
             it('should call proper route init method', function() {
                 router.navigate('about',  router.routes);
-                expect(about.init).toHaveBeenCalled();
+                expect(router.routes.about.init).toHaveBeenCalled();
             });
-        })
+        });
 
         describe('and route is not on routes list', function() {
             beforeEach(function() {
-                router.when(home);
-                router.otherwise('home');
-                spyOn(home, 'init');
+                home.default = true;
+                router.routes.home = home;
+                spyOn(router.routes.home, 'init');
+            });
+            afterEach(function() {
+                home.default = false;
             });
             it('should call default route init method', function() {
+                console.log(router.routes.home);
                 router.navigate('',  router.routes);
-                expect(home.init).toHaveBeenCalled();
+                expect(router.routes.home.init).toHaveBeenCalled();
             });
         });
 
         describe('and route is same as active route', function() {
             beforeEach(function() {
-                router.when(home);
-                spyOn(home, 'init');
+                router.routes.home = home;
+                router.navigate('home',  router.routes);
+                spyOn(router.routes.home, 'init');
             });
             it('should not call any route config init method', function() {
                 router.navigate('home',  router.routes);
-                expect(home.init).not.toHaveBeenCalled();
+                expect(router.routes.home.init).not.toHaveBeenCalled();
             });
         });
 
@@ -81,11 +87,11 @@ describe('in Router', function() {
     describe('when "when" method called', function() {
 
         beforeEach(function() {
-            router.routes = [];
+            router.routes = {};
         });
 
         afterEach(function() {
-            router.routes = [];
+            router.routes = {};
         });
 
         it('should return router instanse for chainig', function() {
@@ -94,26 +100,28 @@ describe('in Router', function() {
         
         it('sould add route config to list of configs', function() {
             router.when(contacts);
-            expect(router.routes).toContain(contacts);
+            expect(router.routes[contacts.url]).toEqual(contacts);
         });
 
         it('sould not add wrong route config to list of configs', function() {
             router.when(wrongRoute1);
-            expect(router.routes).not.toContain(wrongRoute1);
+            var routeNames = Object.keys(router.routes)
+            expect(routeNames).not.toContain(wrongRoute1.url);
         });
     });
     describe('when "otherwise" method called with url as parameter', function() {
         beforeEach(function() {
-            router.routes.push(about, contacts);
+            router.routes[about.url] = about;
+            router.routes[contacts.url] = contacts;
         });
 
         afterEach(function() {
-            router.routes = [];
+            router.routes = {};
         });
 
         it('should set add to route config with this url property default to equal true', function() {
             router.otherwise(about.url);
-            expect(about.default).toBe(true);
+            expect(router.routes.about.default).toBe(true);
         });
     });
 });
