@@ -4,6 +4,7 @@
         "window": false,
         "jQuery": false,
         "document": false,
-        "use strict": false
+        "use strict": false,
+        "this": false
     }
 }

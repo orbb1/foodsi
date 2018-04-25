@@ -10,15 +10,29 @@
 </head>
 
 <body>
-    <h1>Carbon intensity API</h1>
-    
-    <script src="vendor/jquery-3.3.1.min.js"></script>
-    <script src="app.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            APP.init();
-        });
-    </script>
+    <header>
+        <h1 class="masterhead__header">Carbon intensity page</h1>
+        <nav class="nav__main">
+            <ul class="nav__list">
+                <li class="nav__item"><a class="nav__item-link" href="#home">home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="section__content">
+        </section>
+    </main>
+    <!-- build:js vendor.js -->
+    <script type="text/javascript" src="vendor/jquery-3.3.1.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js bundle.js -->
+    <script type="text/javascript" src="scripts/router.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/app.config.js"></script>
+    <script type="text/javascript" src="pages/home/home.js"></script>
+    <script type="text/javascript" src="scripts/router.config.js"></script>
+    <script type="text/javascript" src="scripts/http.service.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>

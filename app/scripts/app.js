@@ -1,16 +1,17 @@
 'use strict';
 
-var APP = (function(APP) {
-    var content = document.createElement('h2');
-    content.innerText = 'Initialized!';
+var APP = (function($, APP) {
 
     APP.init = function() {
         APP.log();
     };
-
+    
     APP.log = function() {
-        document.body.appendChild(content);
+        console.log('init');
     };
 
+    APP.modules;
+    APP.services;
+    
     return APP;
-})(window.APP || {});
+})(jQuery, window.APP || {});

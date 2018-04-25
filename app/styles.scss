@@ -1,3 +1,62 @@
-body {
-    background-color: aliceblue;
+//Imports
+
+@import url('https://fonts.googleapis.com/css?family=PT+Sans|Oswald');
+
+@import './utility';
+@import './pages/home/home';
+
+// Variables
+
+$bodyFont: 'PT Sans', sans-serif;
+$headerFont: 'Oswald', sans-serif;
+$backgroundColor: #fff;
+$baseBorderColor: #888;
+$bodyTextColor: #000;
+$bodyAccentColor: #f22200;
+$linkColor: #ff3f00;
+
+// Global styles
+
+html, body {
+    background-color: $backgroundColor;
+    color: $bodyTextColor;
+    font-family: $bodyFont;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+// Typography
+
+h1, h2, h3 {
+    font-family: $headerFont;
+}
+
+// Header
+
+.masterhead__header {
+    border: 2px solid $baseBorderColor;
+    padding: .75rem;
+}
+
+.nav__list {
+    list-style: none;
+    padding-left: 0;
+    border: 2px solid $baseBorderColor;
+}
+
+.nav__item-link {
+    display: inline-block;
+    margin: .5rem;
+}
+
+// Main
+
+.section__content {
+    padding: .75rem;
+}
+
+.section__header {
+    margin-top: 0; 
 }
