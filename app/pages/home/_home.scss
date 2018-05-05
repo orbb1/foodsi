@@ -1,3 +1,14 @@
 .spinner__wrapper {
     padding: 2rem;
 }
+
+.content__table {
+    box-shadow: 3px 3px 3px #ccc;
+
+    tr:hover {
+        background-color: #f5f3f3;
+    }
+    td {
+        padding: .5em;
+    }
+}

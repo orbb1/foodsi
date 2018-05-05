@@ -27,6 +27,17 @@ html, body {
     margin: 0;
 }
 
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    
+    .column {
+        margin: 1rem 2rem 1rem 0;
+        padding: 0 2rem;
+    }
+}
+
 // Typography
 
 h1, h2, h3 {
