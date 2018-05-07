@@ -1,19 +1,19 @@
 //Imports
 
-@import url('https://fonts.googleapis.com/css?family=PT+Sans|Oswald');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
-@import './utility';
-@import './pages/home/home';
+@import './utility.scss';
+@import './pages/home/home.scss';
 
 // Variables
 
 $bodyFont: 'PT Sans', sans-serif;
-$headerFont: 'Oswald', sans-serif;
+$headerFont: 'PT Sans', sans-serif;
 $backgroundColor: #fff;
 $baseBorderColor: #888;
 $bodyTextColor: #000;
 $bodyAccentColor: #f22200;
-$linkColor: #ff3f00;
+$linkColor: #000;
 
 // Global styles
 
@@ -44,22 +44,50 @@ h1, h2, h3 {
     font-family: $headerFont;
 }
 
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
 // Header
 
-.masterhead__header {
-    border: 2px solid $baseBorderColor;
-    padding: .75rem;
+.masterhead {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 .75rem;
 }
 
 .nav__list {
     list-style: none;
     padding-left: 0;
-    border: 2px solid $baseBorderColor;
+    margin: 0;
 }
 
 .nav__item-link {
     display: inline-block;
-    margin: .5rem;
+    margin: 0;
+    padding: 1.25em;
+    text-decoration: none;
+    color: $linkColor;
+    font-weight: 600;
+    border-bottom: 3px solid $baseBorderColor;
+}
+
+.nav__item-link:hover {
+    background-color: $baseBorderColor;
+    color: #fff;
+    -webkit-transition: background-color 300ms ease;
+       -moz-transition: background-color 300ms ease;
+            transition: background-color 300ms ease;
 }
 
 // Main

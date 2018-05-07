@@ -7,8 +7,11 @@
 
     tr:hover {
         background-color: #f5f3f3;
+        transition: background-color 300ms ease;
     }
+    
     td {
         padding: .5em;
+        border: none;
     }
 }
