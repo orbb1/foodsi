@@ -9,7 +9,10 @@ APP.services = (function(services) {
             this.performRequest = function(method, url, config) {
                 var requestConfig = {
                     method: method,
-                    url: url
+                    url: url,
+                    error: function(xhr, status, error) {
+                        console.log(error, status);
+                     }
                 };
 
                 if (config != undefined && typeof config === 'object') {

@@ -1,38 +1,27 @@
-<h2 class="section__header section__header--home">Today's carbon intensity data</h2>
+<h2 class="section__header section__header--home">Carbon Intensity data for current half hour</h2>
 <div class="spinner__wrapper">
     <div class="u-spinner"></div>
 </div>
 <div class="content__wrapper u-hidden">
     <div class="container">
         <div class="column">
-            <h3 class="column__header">Forecast range</h3>
-            <table class="content__table">
-                <tr>
-                    <td>From:</td>
-                    <td id="forecastRangeStart"></td>
-                </tr>
-                <tr>
-                    <td>To:</td>
-                    <td id="forecastRangeEnd"></td>
-                </tr>
-            </table>
+            <div class="carbon-index__container">
+                <p class="carbon-index__paragraph" id="index"></p>
+            </div>
         </div>
         <div class="column">
-            <h3 class="column__header">Forecast data</h3>
-            <table class="content__table">
-                <tr>
-                    <td>Forecast:</td>
-                    <td id="forecast"></td>
-                </tr>
-                <tr>
-                    <td>Actual:</td>
-                    <td id="actual"></td>
-                </tr>
-                <tr>
-                    <td>Index:</td>
-                    <td id="index"></td>
-                </tr>
-            </table>
+            <div class="carbon-data__wrapper">
+                <p class="carbon-data">
+                    <span id="forecast"></span> gCO2/kWh</p>
+                <p class="carbon-data__legend">Forecast</p>
+            </div>
+        </div>
+        <div class="column">
+            <div class="carbon-data__wrapper">
+                <p class="carbon-data">
+                    <span id="actual"></span> gCO2/kWh</p>
+                <p class="carbon-data__legend">Actual</p>
+            </div>
         </div>
     </div>
 </div>

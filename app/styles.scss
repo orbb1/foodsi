@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 @import './utility.scss';
-@import './pages/home/home.scss';
+@import './pages/home/_home.scss';
 
 // Variables
 
@@ -11,9 +11,18 @@ $bodyFont: 'PT Sans', sans-serif;
 $headerFont: 'PT Sans', sans-serif;
 $backgroundColor: #fff;
 $baseBorderColor: #888;
+$lightAccent: #d1d1d1;
 $bodyTextColor: #000;
 $bodyAccentColor: #f22200;
 $linkColor: #000;
+
+// Mixins
+
+@mixin page-width() {
+    max-width: 1224px;
+    margin: auto;
+    padding: 0 1.5rem;
+}
 
 // Global styles
 
@@ -25,17 +34,6 @@ html, body {
     min-height: 100vh;
     width: 100%;
     margin: 0;
-}
-
-.container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    
-    .column {
-        margin: 1rem 2rem 1rem 0;
-        padding: 0 2rem;
-    }
 }
 
 // Typography
@@ -56,6 +54,27 @@ h3 {
     font-size: 2rem;
 }
 
+// Layout
+
+main {
+    @include page-width;
+}
+
+.section__header {
+    margin-top: 0; 
+}
+
+.container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: start;
+
+    .column {
+        margin: 1rem 2rem 1rem 0;
+        padding: 0;
+    }
+}
+
 // Header
 
 .masterhead {
@@ -64,6 +83,7 @@ h3 {
     justify-content: space-between;
     align-items: center;
     margin: 0 .75rem;
+    @include page-width;
 }
 
 .nav__list {
@@ -80,22 +100,12 @@ h3 {
     color: $linkColor;
     font-weight: 600;
     border-bottom: 3px solid $baseBorderColor;
+    -webkit-transition: background-color 500ms ease;
+       -moz-transition: background-color 500ms ease;
+            transition: background-color 500ms ease;
 }
 
 .nav__item-link:hover {
     background-color: $baseBorderColor;
     color: #fff;
-    -webkit-transition: background-color 300ms ease;
-       -moz-transition: background-color 300ms ease;
-            transition: background-color 300ms ease;
-}
-
-// Main
-
-.section__content {
-    padding: .75rem;
-}
-
-.section__header {
-    margin-top: 0; 
 }

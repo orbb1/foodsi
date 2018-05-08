@@ -11,16 +11,13 @@ APP.modules = (function(modules, $) {
             var $spinner = $('.spinner__wrapper'),
             $contentWrapper = $('.content__wrapper'),
             forecastData = data[0],
-            from = new Date(forecastData.from).toLocaleDateString(),
-            to = new Date(forecastData.to).toLocaleDateString(),
             forecast = forecastData.intensity.forecast || 'no data',
             actual = forecastData.intensity.actual || 'no data',
-            index = forecastData.intensity.index || 'no data';
+            index = forecastData.intensity.index.toLowerCase() || 'no data';
 
             $spinner.addClass('u-hidden');
             $contentWrapper.removeClass('u-hidden');
-            $contentWrapper.find('#forecastRangeStart').text(from);
-            $contentWrapper.find('#forecastRangeEnd').text(to);
+            $contentWrapper.find('.carbon-index__container').addClass(index);
             $contentWrapper.find('#forecast').text(forecast);
             $contentWrapper.find('#actual').text(actual);
             $contentWrapper.find('#index').text(index);
