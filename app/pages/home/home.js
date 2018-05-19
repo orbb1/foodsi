@@ -1,9 +1,10 @@
 'use strict';
 
 APP.modules = (function(modules, $) {
-    var $sectionContent = $('.section__content');
-    var template = '/pages/home/tmpl-home.html';
-    var api = apiUrls;
+    var $sectionContent = $('.section__content'),
+        template = '/pages/home/tmpl-home.html',
+        api = apiUrls,
+        noDataMessage = 'No data ';
 
     modules.home = (function() {
 
@@ -11,9 +12,9 @@ APP.modules = (function(modules, $) {
             var $spinner = $('.spinner__wrapper'),
             $contentWrapper = $('.content__wrapper'),
             forecastData = data[0],
-            forecast = forecastData.intensity.forecast || 'no data',
-            actual = forecastData.intensity.actual || 'no data',
-            index = forecastData.intensity.index.toLowerCase() || 'no data';
+            forecast = forecastData.intensity.forecast || noDataMessage,
+            actual = forecastData.intensity.actual || noDataMessage,
+            index = forecastData.intensity.index.toLowerCase() || noDataMessage;
 
             $spinner.addClass('u-hidden');
             $contentWrapper.removeClass('u-hidden');
@@ -26,15 +27,8 @@ APP.modules = (function(modules, $) {
         var getData = function() {
             var httpService = APP.services.HttpService.getInstance();
             httpService.performRequest('GET', api.API_BASE + api.INTENSITY)
-                .then(function(res, status, xhr) {
-
-                    // API always returns status = success
-                    // if response error occurs, response body will have 'error' prop.
-                    if(res.error != undefined) {
-                        console.log(res);
-                    } else {
-                        presentData(res.data);
-                    }
+                .then(function(res) {
+                    presentData(res.data);
                 });
         };
 
