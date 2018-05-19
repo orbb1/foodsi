@@ -23,10 +23,6 @@ APP.modules = (function(modules, $) {
             $contentWrapper.find('#index').text(index);
         };
 
-        var loadTemplate = function() {
-            $sectionContent.load(template);
-        };
-
         var getData = function() {
             var httpService = APP.services.HttpService.getInstance();
             httpService.performRequest('GET', api.API_BASE + api.INTENSITY)
@@ -43,7 +39,7 @@ APP.modules = (function(modules, $) {
         };
 
         var init = function() {
-            loadTemplate();
+            $sectionContent.load(template);
             getData();
         };
 
