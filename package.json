@@ -17,16 +17,16 @@
   },
   "homepage": "https://github.com/orbb1/foodsi#readme",
   "devDependencies": {
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.24.4",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.4.0",
     "gulp-jshint": "^2.1.0",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.5",
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
-    "local-web-server": "^2.4.0"
+    "local-web-server": "^2.5.2"
   },
   "dependencies": {}
 }
