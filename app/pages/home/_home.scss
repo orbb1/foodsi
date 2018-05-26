@@ -1,3 +1,62 @@
 .spinner__wrapper {
     padding: 2rem;
 }
+
+.carbon-index__container {
+    width: 15rem;
+    height: 15rem;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.very.high {
+        background-color: #1d1d1d;
+        color: #fff;
+    }
+
+    &.high {
+        background-color: #707070;
+        color: #fff;
+    }
+
+    &.moderate {
+        background-color: #d1d1d1;
+    }
+
+    &.low {
+        background-color: #87e4b6;
+    }
+
+    &.very.low {
+        background-color: #46c8fc;
+    }
+}
+
+.carbon-index__paragraph {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+
+.carbon-data__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+}
+
+.carbon-data,
+.carbon-data__legend {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: #888;
+
+    > span {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #000;
+    }
+}

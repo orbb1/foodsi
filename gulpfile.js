@@ -34,7 +34,7 @@ gulp.task('js-watch', ['jshint'], function() {
 
 gulp.task('sass', function() {
     return gulp.src(SOURCE_DIR + '/styles.scss')
-    .pipe(sass())
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(SOURCE_DIR))
     .pipe(browserSync.stream());
 });
