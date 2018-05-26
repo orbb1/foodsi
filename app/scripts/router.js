@@ -15,6 +15,12 @@ var Router = (function() {
             navigate('', routes);
         });
 
+        function destroyCurrentModule(mod) {
+            if (typeof mod != 'undefined') {
+                mod.destroy();
+            }
+        }
+
         function navigate(urlhash, definedRoutes) {
             var nextPage = definedRoutes[urlhash] || Object.keys(definedRoutes)
                                                         .map(function(route){ return definedRoutes[route]})
@@ -22,6 +28,7 @@ var Router = (function() {
 
             if (nextPage != undefined && currentPage !== nextPage) {
                 nextPage.init();
+                destroyCurrentModule(currentPage);
                 currentPage = nextPage;
             } else {
                 return

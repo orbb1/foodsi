@@ -37,8 +37,13 @@ APP.modules = (function(modules, $) {
             getData();
         };
 
+        var destroy = function() {
+            $sectionContent.empty();
+        };
+
         return {
-            init: init
+            init: init,
+            destroy: destroy
         };
     })();
 
