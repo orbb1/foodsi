@@ -10,11 +10,11 @@ APP.modules = (function(modules, $) {
 
         var presentData = function(data) {
             var $spinner = $('.spinner__wrapper'),
-            $contentWrapper = $('.content__wrapper'),
-            forecastData = data[0],
-            forecast = forecastData.intensity.forecast || noDataMessage,
-            actual = forecastData.intensity.actual || noDataMessage,
-            index = forecastData.intensity.index.toLowerCase() || noDataMessage;
+                $contentWrapper = $('.content__wrapper'),
+                forecastData = data[0],
+                forecast = forecastData.intensity.forecast || noDataMessage,
+                actual = forecastData.intensity.actual || noDataMessage,
+                index = forecastData.intensity.index.toLowerCase() || noDataMessage;
 
             $spinner.addClass('u-hidden');
             $contentWrapper.removeClass('u-hidden');

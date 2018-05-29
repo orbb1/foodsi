@@ -7,6 +7,11 @@ APP.modules = (function(modules, $) {
     modules.charts = (function() {
         var presentData = function(data) {
             console.log(data);
+            var $spinner = $('.spinner__wrapper'),
+                $contentWrapper = $('.content__wrapper');
+                
+            $spinner.addClass('u-hidden');
+            $contentWrapper.removeClass('u-hidden');
         }
 
         var getData = function() {

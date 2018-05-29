@@ -4,7 +4,7 @@
 
 @import './utility.scss';
 @import './pages/home/_home.scss';
-@import './pages/home/_charts.scss';
+@import './pages/charts/_charts.scss';
 
 // Variables
 
@@ -91,6 +91,8 @@ main {
     list-style: none;
     padding-left: 0;
     margin: 0;
+    display: flex;
+    flex-flow: row nowrap;
 }
 
 .nav__item-link {
