@@ -9,7 +9,7 @@ APP.modules = (function(modules, $) {
             var arr = [];
             for (var i = 0; i<rawData.length; i++) {
                 arr.push({
-                    time: rawData[i].from,
+                    time: Date.parse(rawData[i].from),
                     forecast: rawData[i].intensity.forecast
                 })
             };
@@ -19,20 +19,20 @@ APP.modules = (function(modules, $) {
         var drawChart = function(cleanData) {
             var svgWidth = 900, 
                 svgHeight = 600,
-                margin = { top: 20, right: 20, bottom: 80, left: 50 },
+                margin = { top: 50, right: 20, bottom: 50, left: 50 },
                 width = svgWidth - margin.left - margin.right,
                 height = svgHeight - margin.top - margin.bottom;
             
             var svg = d3.select('svg.line-chart')
-                .attr("width", svgWidth)
-                .attr("height", svgHeight);
+                .attr('width', svgWidth)
+                .attr('height', svgHeight);
 
             var g = svg.append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                .attr('transform', 'translate(' + margin.left + ', -' + margin.bottom + ')');
 
             var xScale = d3.scaleLinear().domain([
-                d3.min(cleanData, function(d) {return Date.parse(d.time)}),
-                d3.max(cleanData, function(d) {return Date.parse(d.time)})
+                d3.min(cleanData, function(d) {return d.time}),
+                d3.max(cleanData, function(d) {return d.time})
             ]).range([margin.left, width]);
 
             var yScale = d3.scaleLinear().domain([
@@ -41,15 +41,29 @@ APP.modules = (function(modules, $) {
             ]).range([height, margin.bottom]);
 
             var xAxis = d3.axisBottom().scale(xScale)
-                .ticks(cleanData.length).tickFormat(function(d, i) {
-                    return cleanData[i].time
+                .ticks(cleanData.length).tickFormat(function(d) {
+                    var time = new Date(d).toString();
+                    return time.split(' GMT')[0];
                 });
+            
             var yAxis = d3.axisLeft().scale(yScale);
 
-            svg.append('g').attr('transform', 'translate(0, ' + height + ')').call(xAxis)
+            var line = d3.line()
+                .x(function(d){ return xScale(d.time)})
+                .y(function(d){ return yScale(d.forecast)})
+                .curve(d3.curveBasis);
+
+            svg.append('g').attr('transform', 'translate(0, ' + (height - margin.bottom) + ')').call(xAxis)
                 .selectAll('text').style("text-anchor", "start").attr('class', 'line-chart__x-label')
-            svg.append('g').attr('transform', 'translate(' + margin.left + ', 0)').call(yAxis);
+            svg.append('g').attr('transform', 'translate(' + margin.left + ', -' + margin.bottom + ')').call(yAxis);
+            svg.append('path').attr('d', line(cleanData))
+                .attr('transform', 'translate(0, -' + margin.bottom + ')')
+                .attr('stroke', 'blue')
+                .attr('stroke-width', 2)
+                .attr('fill', 'none');
+            
         };
+        
         drawChart(parseData(rawData));
     };
 
