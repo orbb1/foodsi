@@ -17,10 +17,10 @@ APP.modules = (function(modules, $) {
         };
 
         var drawChart = function(cleanData) {
-            var svgWidth = 900, 
+            var svgWidth = 1000, 
                 svgHeight = 600,
-                margin = { top: 50, right: 20, bottom: 50, left: 50 },
-                width = svgWidth - margin.left - margin.right,
+                margin = { top: 20, right: 10, bottom: 50, left: 50 },
+                width = svgWidth - margin.right,
                 height = svgHeight - margin.top - margin.bottom;
             
             var svg = d3.select('svg.line-chart')
@@ -41,9 +41,9 @@ APP.modules = (function(modules, $) {
             ]).range([height, margin.bottom]);
 
             var xAxis = d3.axisBottom().scale(xScale)
-                .ticks(cleanData.length).tickFormat(function(d) {
+                .ticks(cleanData.length/3).tickFormat(function(d, i) {
                     var time = new Date(d).toString();
-                    return time.split(' GMT')[0];
+                    return rawData[i].from;
                 });
             
             var yAxis = d3.axisLeft().scale(yScale);
@@ -61,6 +61,27 @@ APP.modules = (function(modules, $) {
                 .attr('stroke', 'blue')
                 .attr('stroke-width', 2)
                 .attr('fill', 'none');
+
+			var points = svg.append('g');
+			
+			points.attr('class', 'dots')
+				.selectAll('circle')
+				.data(cleanData)
+				.enter()
+				.append('circle')
+				.attr('class', 'dot')
+				.attr('transform', 'translate(0, -' + margin.bottom + ')')
+				.attr('cx', function(d) {return xScale(d.time)})
+				.attr('cy', function(d) {return yScale(d.forecast)})
+				.attr('r', 0)
+				.attr('fill', 'red')
+				.transition()
+				.duration(1000)
+				.ease(d3.easeElasticOut)
+				.delay(function(d, idx) {
+					return idx * 50;
+				})
+				.attr('r', 7);
             
         };
         
