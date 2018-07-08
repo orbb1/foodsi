@@ -8,3 +8,9 @@
 .line-chart__x-label {
     transform: translate(15px, 10px) rotate(90deg);
 }
+
+.tooltip {
+    padding: .5rem;
+    background-color: #d1d1d1;
+    border: 1px solid #888;
+}
