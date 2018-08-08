@@ -27,9 +27,6 @@ APP.modules = (function(modules, $) {
                 .attr('width', svgWidth)
                 .attr('height', svgHeight);
 
-            var g = svg.append("g")
-                .attr('transform', 'translate(' + margin.left + ', -' + margin.bottom + ')');
-
             var xScale = d3.scaleLinear().domain([
                 d3.min(cleanData, function(d) {return d.time}),
                 d3.max(cleanData, function(d) {return d.time})
@@ -38,7 +35,7 @@ APP.modules = (function(modules, $) {
             var yScale = d3.scaleLinear().domain([
                 d3.min(cleanData, function(d) {return d.forecast}),
                 d3.max(cleanData, function(d) {return d.forecast})
-            ]).range([height, margin.bottom]);
+            ]).range([height, margin.bottom * 2]);
 
             var xAxis = d3.axisBottom().scale(xScale)
                 .ticks(cleanData.length/3).tickFormat(function(d, i) {
@@ -50,8 +47,7 @@ APP.modules = (function(modules, $) {
 
             var line = d3.line()
                 .x(function(d){ return xScale(d.time)})
-                .y(function(d){ return yScale(d.forecast)})
-                .curve(d3.curveBasis);
+                .y(function(d){ return yScale(d.forecast)});
 
 			var toolTipEl = d3.select('body').append('div').attr('class', 'tooltip');
 			var tooltip = function(forecast) {
@@ -68,7 +64,7 @@ APP.modules = (function(modules, $) {
             svg.append('g').attr('transform', 'translate(' + margin.left + ', -' + margin.bottom + ')').call(yAxis);
             svg.append('path').attr('d', line(cleanData))
                 .attr('transform', 'translate(0, -' + margin.bottom + ')')
-                .attr('stroke', 'blue')
+                .attr('stroke', 'grey')
                 .attr('stroke-width', 2)
                 .attr('fill', 'none');
 
@@ -83,7 +79,7 @@ APP.modules = (function(modules, $) {
 				.attr('cx', function(d) {return xScale(d.time)})
 				.attr('cy', function(d) {return yScale(d.forecast)})
 				.attr('r', 0)
-				.attr('fill', 'grey')
+				.attr('fill', 'red')
 				.on('mouseover', function(d) {tooltip(d.forecast)})
 				.on('mouseleave', function() {toolTipEl.style('display', 'none')})
 				.transition()
@@ -92,7 +88,7 @@ APP.modules = (function(modules, $) {
 				.delay(function(d, idx) {
 					return idx * 50;
 				})
-				.attr('r', 8);
+				.attr('r', 6);
             
         };
         
