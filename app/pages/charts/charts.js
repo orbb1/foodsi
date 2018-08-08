@@ -119,6 +119,7 @@ APP.modules = (function(modules, $) {
 
         var destroy = function() {
             $sectionContent.empty();
+            $('.tooltip').remove();
         };
 
         return {
