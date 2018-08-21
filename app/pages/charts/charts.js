@@ -1,6 +1,6 @@
-'use strict';
+    'use strict';
 
-APP.modules = (function(modules, $) {
+    APP.modules = (function(modules, $) {
     var $sectionContent = $('.section__content'),
         template = '/pages/charts/tmpl-charts.html';
 
@@ -49,15 +49,15 @@ APP.modules = (function(modules, $) {
                 .x(function(d){ return xScale(d.time)})
                 .y(function(d){ return yScale(d.forecast)});
 
-			var toolTipEl = d3.select('body').append('div').attr('class', 'tooltip');
-			var tooltip = function(forecast) {
-				toolTipEl
-				.style('display', 'block')
-				.style('position', 'absolute')
-				.style('left', (d3.event.pageX) + 'px')		
-				.style('top', (d3.event.pageY - 28) + 'px')
-				.html(forecast + ' gCO2/kWh');
-			}
+            var toolTipEl = d3.select('body').append('div').attr('class', 'tooltip');
+            var tooltip = function(forecast) {
+                toolTipEl
+                    .style('display', 'block')
+                    .style('position', 'absolute')
+                    .style('left', (d3.event.pageX) + 'px')		
+                    .style('top', (d3.event.pageY - 28) + 'px')
+                    .html(forecast + ' gCO2/kWh');
+            }
 
             svg.append('g').attr('transform', 'translate(0, ' + (height - margin.bottom) + ')').call(xAxis)
                 .selectAll('text').style("text-anchor", "start").attr('class', 'line-chart__x-label')
@@ -68,27 +68,28 @@ APP.modules = (function(modules, $) {
                 .attr('stroke-width', 2)
                 .attr('fill', 'none');
 
-			var points = svg.append('g');
-			points.attr('class', 'dots')
-				.selectAll('circle')
-				.data(cleanData)
-				.enter()
-				.append('circle')
-				.attr('class', 'dot')
-				.attr('transform', 'translate(0, -' + margin.bottom + ')')
-				.attr('cx', function(d) {return xScale(d.time)})
-				.attr('cy', function(d) {return yScale(d.forecast)})
-				.attr('r', 0)
-				.attr('fill', 'red')
-				.on('mouseover', function(d) {tooltip(d.forecast)})
-				.on('mouseleave', function() {toolTipEl.style('display', 'none')})
-				.transition()
-				.duration(1000)
-				.ease(d3.easeElasticOut)
-				.delay(function(d, idx) {
-					return idx * 50;
-				})
-				.attr('r', 6);
+            var points = svg.append('g');
+            points.attr('class', 'dots')
+                .selectAll('circle')
+                .data(cleanData)
+                .enter()
+                .append('circle')
+                .attr('class', 'dot')
+                .attr('transform', 'translate(0, -' + margin.bottom + ')')
+                .attr('cx', function(d) {return xScale(d.time)})
+                .attr('cy', function(d) {return yScale(d.forecast)})
+                .attr('r', 0)
+                .attr('fill', 'red')
+                .on('mouseover', function(d) {
+                    tooltip(d.forecast)
+                })
+                .transition()
+                .duration(1000)
+                .ease(d3.easeElasticOut)
+                .delay(function(d, idx) {
+                    return idx * 50;
+                })
+                .attr('r', 6);
             
         };
         
@@ -129,4 +130,4 @@ APP.modules = (function(modules, $) {
     })();
 
     return modules;
-})(APP.modules || {}, jQuery);
+    })(APP.modules || {}, jQuery);

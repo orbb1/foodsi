@@ -28,13 +28,14 @@ var Router = (function() {
 
             if (nextPage != undefined && currentPage !== nextPage) {
                 nextPage.init();
+                history.pushState({}, nextPage.url, '#' + nextPage.url);
                 destroyCurrentModule(currentPage);
                 currentPage = nextPage;
             } else {
                 return
             }
         }
-    
+
         function when(cfg) {
             if (typeof cfg === 'object' && typeof cfg.url === 'string' && typeof cfg.init === 'function') {
                 this.routes[cfg.url] = cfg;
