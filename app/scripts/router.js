@@ -32,7 +32,7 @@ var Router = (function() {
                 destroyCurrentModule(currentPage);
                 currentPage = nextPage;
             } else {
-                return
+                return;
             }
         }
 
